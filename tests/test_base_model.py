@@ -11,7 +11,7 @@ import models
 import unittest
 from datetime import datetime
 from time import sleep
-from model.base_model import BaseModel
+from models.base_model import BaseModel
 
 
 class TestBaseModel_instance(unittest.TestCase):
@@ -20,13 +20,14 @@ class TestBaseModel_instance(unittest.TestCase):
     """
 
     def test_no_args_instances(self):
-        #checks if class BaseModel is the same type as the instance of BaseModel
+        # checks if class BaseModel is the same type as  instance of BaseModel
         self.assertEqual(BaseModel, type(BaseModel()))
 
     def test_new_instance_stored_in_objects(self):
-        #checks if BaseModel object is in the storage.all().values
+        # checks if BaseModel object is in the storage.all().values
         self.assertIn(BaseModel(), models.storage.all().values())
-         def test_id_is_public_str(self):
+        
+    def test_id_is_public_str(self):
         # It checks if the type of the id attribute,
         # of the BaseModel class is a string.
         self.assertEqual(str, type(BaseModel().id))
