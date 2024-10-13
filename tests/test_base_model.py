@@ -26,7 +26,7 @@ class TestBaseModel_instance(unittest.TestCase):
     def test_new_instance_stored_in_objects(self):
         # checks if BaseModel object is in the storage.all().values
         self.assertIn(BaseModel(), models.storage.all().values())
-        
+
     def test_id_is_public_str(self):
         # It checks if the type of the id attribute,
         # of the BaseModel class is a string.
