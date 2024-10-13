@@ -91,34 +91,34 @@ class TestPlace_instantiation(unittest.TestCase):
     def test_longitude_is_public_class_attribute(self):
         pl = Place()
         self.assertEqual(float, type(Place.longitude))
-OBOBOBOBOBOBOBOBOB        self.assertIn("longitude", dir(pl))
-OBOBOBOB        self.assertNotIn("longitude", pl.__dict__)
-OBOBOBOB
-OBOBOB    def test_amenity_ids_is_public_class_attribute(self):
-OBOBOB        pl = Place()
-OBOBOBOB        self.assertEqual(list, type(Place.amenity_ids))
+        self.assertIn("longitude", dir(pl))
+        self.assertNotIn("longitude", pl.__dict__)
+
+    def test_amenity_ids_is_public_class_attribute(self):
+        pl = Place()
+        self.assertEqual(list, type(Place.amenity_ids))
         self.assertIn("amenity_ids", dir(pl))
-OBOB        self.assertNotIn("amenity_ids", pl.__dict__)
-OB
+        self.assertNotIn("amenity_ids", pl.__dict__)
+
     def test_two_places_unique_ids(self):
         pl1 = Place()
-OBOB        pl2 = Place()
+        pl2 = Place()
         self.assertNotEqual(pl1.id, pl2.id)
-OB
-OB    def test_two_places_different_created_at(self):
+
+    def test_two_places_different_created_at(self):
         pl1 = Place()
-OBOB        sleep(0.05)
-OB        pl2 = Place()
+        sleep(0.05)
+        pl2 = Place()
         self.assertLess(pl1.created_at, pl2.created_at)
-OB
+
     def test_two_places_different_updated_at(self):
         pl1 = Place()
-OB        sleep(0.05)
+        sleep(0.05)
         pl2 = Place()
         self.assertLess(pl1.updated_at, pl2.updated_at)
 
     def test_str_representation(self):
-OB        dt = datetime.today()
+        dt = datetime.today()
         dt_repr = repr(dt)
         pl = Place()
         pl.id = "123456"
@@ -135,36 +135,36 @@ class TestPlace_instantiation(unittest.TestCase):
 
     def test_instantiation_with_kwargs(self):
         dt = datetime.today()
-OBOBOBOBOBOBOBOBOBOBOBOBOBOB        dt_iso = dt.isoformat()
-OBOBOBOB        pl = Place(id="345", created_at=dt_iso, updated_at=dt_iso)
+        dt_iso = dt.isoformat()
+        pl = Place(id="345", created_at=dt_iso, updated_at=dt_iso)
         self.assertEqual(pl.id, "345")
-OBOB        self.assertEqual(pl.created_at, dt)
-OBOB        self.assertEqual(pl.updated_at, dt)
+        self.assertEqual(pl.created_at, dt)
+        self.assertEqual(pl.updated_at, dt)
 
-OBOB    def test_instantiation_with_None_kwargs(self):
-OBOB        with self.assertRaises(TypeError):
-OB            Place(id=None, created_at=None, updated_at=None)
-OB
-OBOB
-OBOBclass TestPlace_save(unittest.TestCase):
-OB    """
-OBOB        Unittests to test save method of the 'Place' class.
-OBOB    """
+    def test_instantiation_with_None_kwargs(self):
+        with self.assertRaises(TypeError):
+            Place(id=None, created_at=None, updated_at=None)
 
-OBOBOB    @classmethod
-OB    def setUp(self):
-OB        try:
+
+class TestPlace_save(unittest.TestCase):
+    """
+        Unittests to test save method of the 'Place' class.
+    """
+
+    @classmethod
+    def setUp(self):
+        try:
             os.rename("file.json", "tmp")
-OBOB        except IOError:
+        except IOError:
             pass
-OB
+
     def tearDown(self):
         try:
             os.remove("file.json")
         except IOError:
-OB            pass
+            pass
         try:
-OB            os.rename("tmp", "file.json")
+           os.rename("tmp", "file.json")
         except IOError:
             pass
 
